@@ -10,13 +10,15 @@ class BarcodeGeneratorHTML extends BarcodeGenerator
      *
      * @param string $code code to print
      * @param string $type type of barcode
+     * @param boolean $showCode Displays the coupon code underneath the barcode if set to true.
+     * @param string $codeStyles CSS styles to apply to the coupon code underneath the barcode.
      * @param int $widthFactor Width of a single bar element in pixels.
      * @param int $totalHeight Height of a single bar element in pixels.
      * @param int|string $color Foreground color for bar elements (background is transparent).
      * @return string HTML code.
      * @public
      */
-    public function getBarcode($code, $type, $widthFactor = 2, $totalHeight = 30, $color = 'black')
+    public function getBarcode($code, $type, $showCode, $codeStyles, $widthFactor = 2, $totalHeight = 30, $color = 'black')
     {
         $barcodeData = $this->getBarcodeData($code, $type);
 
@@ -34,6 +36,10 @@ class BarcodeGeneratorHTML extends BarcodeGenerator
             }
 
             $positionHorizontal += $barWidth;
+        }
+        
+        if($showCode == true) {
+            $html .= '<div style="' . $codeStyles . '">' . $code . '</div>' . "\n";
         }
 
         $html .= '</div>' . "\n";
