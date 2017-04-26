@@ -15,6 +15,14 @@ composer require picqer/php-barcode-generator
 ## Usage
 Initiate the barcode generator for the output you want, then call the ->getBarcode() routine as many times as you want.
 
+###SubStacks General Usage
+```php
+$coupon_code_styles = 'text-align:center;font-size:12px;position:relative;top:30px;letter-spacing:6px;left:3px;';
+$generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+echo $generator->getBarcode($coupon_code, $generator::TYPE_STANDARD_2_5, true, $coupon_code_styles, 20, $widthFactor = 2, $totalHeight = 30, $color = 'black');
+```
+
+### Default Usage
 ```php
 $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
 echo $generator->getBarcode('081231723897', $generator::TYPE_CODE_128);
